@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/activity_main_drawer_logged_in" >
+
+        <item   android:id="@+id/my_profile"
+            android:icon="@drawable/ic_nav_user"
+            android:title="@string/my_profile"></item>
+
+        <item   android:id="@+id/new_recipe"
+            android:icon="@drawable/ic_nav_user"
+            android:title="@string/new_recipe"></item>
+
+        <item   android:id="@+id/my_recipes"
+            android:icon="@drawable/ic_nav_user"
+            android:title="@string/my_recipes"></item>
+
+        <item   android:id="@+id/log_out"
+            android:icon="@drawable/ic_nav_sign_out"
+            android:title="@string/log_out"></item>
+
+    </group>
+
+</menu>

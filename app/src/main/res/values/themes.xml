@@ -14,4 +14,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Prinzkoch.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"></style>
+
+    <style name="Theme.Prinzkoch.PopUpOverlay" parent="Theme.MaterialComponents.Light"></style>
+
 </resources>

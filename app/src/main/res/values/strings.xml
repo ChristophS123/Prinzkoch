@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Prinzkoch</string>
+    <string name="log_in">Einloggen</string>
+    <string name="register">Registrieren</string>
+    <string name="my_profile">Mein Profil</string>
+    <string name="new_recipe">Neues Rezept</string>
+    <string name="my_recipes">Meine Rezepte</string>
+    <string name="log_out">Abmelden</string>
 </resources>

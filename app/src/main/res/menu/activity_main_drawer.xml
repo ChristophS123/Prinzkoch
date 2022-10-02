@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/activity_main_drawer_guest">
+
+        <item   android:id="@+id/log_in"
+                android:icon="@drawable/ic_nav_user"
+                android:title="@string/log_in"></item>
+
+        <item   android:id="@+id/register"
+                android:icon="@drawable/ic_nav_user"
+                android:title="@string/register"></item>
+
+    </group>
+
+</menu>
