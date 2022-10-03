@@ -16,4 +16,5 @@
     <dimen name="progress_bar_size">30dp</dimen>
     <dimen name="progress_text_marginStart">8dp</dimen>
     <dimen name="progress_text_size">16sp</dimen>
+    <dimen name="nav_header_logged_in_margin_button">8dp</dimen>
 </resources>

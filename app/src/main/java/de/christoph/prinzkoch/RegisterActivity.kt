@@ -44,15 +44,18 @@ class RegisterActivity : BaseActivity() {
         }
         if(!validateForm(name, email, password))
             return
+        showProgressDialog(resources.getString(R.string.please_wait))
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
+                hideProgressDialog()
                 if(task.isSuccessful) {
                     Toast.makeText(
                         this,
                         "Willkommen $name, du bist nun Registriert",
                         Toast.LENGTH_LONG
                     ).show()
-                    startActivity(Intent(this@RegisterActivity, LoggedInMainActivity::class.java))
+                    startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                    auth.signOut()
                     finish()
                 } else {
                     showErrorSnackbar("Du konntest nicht registriert werden.")
