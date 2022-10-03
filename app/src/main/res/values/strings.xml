@@ -6,4 +6,10 @@
     <string name="new_recipe">Neues Rezept</string>
     <string name="my_recipes">Meine Rezepte</string>
     <string name="log_out">Abmelden</string>
+    <string name="name">Name</string>
+    <string name="register_tutorial">Gebe deinen Namen, deine Email Adresse und ein Passwort ein, um dich zu registrieren.</string>
+    <string name="email">Email Adresse</string>
+    <string name="password">Passwort</string>
+    <string name="password_submit">Passwort bestätigen</string>
+    <string name="please_wait">Bitte warten</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "287532645906",
+    "project_id": "prinzkoch-a196e",
+    "storage_bucket": "prinzkoch-a196e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287532645906:android:98d1b02549be604b70e2cb",
+        "android_client_info": {
+          "package_name": "de.christoph.prinzkoch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287532645906-7uepc0skut6pr2pre6f1s0eehd5b3ira.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG2ADclnwUy8Ppx-evJSIFIrfC3uRqaL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287532645906-7uepc0skut6pr2pre6f1s0eehd5b3ira.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

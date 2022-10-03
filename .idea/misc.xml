@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/drawable/nav_header_main_background.xml" value="0.3035" />
+        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/activity_logged_in_main.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/activity_register.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/activity_splash.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/app_bar_main.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/content_main.xml" value="0.35597826086956524" />
+        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/dialog_progress.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/nav_header_main.xml" value="0.33" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/menu/activity_logged_in_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/menu/activity_main_drawer.xml" value="0.365625" />
