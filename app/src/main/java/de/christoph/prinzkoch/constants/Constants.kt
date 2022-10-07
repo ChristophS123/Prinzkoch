@@ -1,4 +1,4 @@
-package de.christoph.prinzkoch
+package de.christoph.prinzkoch.constants
 
 object Constants {
 

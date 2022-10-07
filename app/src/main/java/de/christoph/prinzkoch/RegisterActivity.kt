@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import de.christoph.prinzkoch.firebase.FirestoreClass
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -47,20 +48,25 @@ class RegisterActivity : BaseActivity() {
         showProgressDialog(resources.getString(R.string.please_wait))
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                hideProgressDialog()
                 if(task.isSuccessful) {
-                    Toast.makeText(
-                        this,
-                        "Willkommen $name, du bist nun Registriert",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
-                    auth.signOut()
-                    finish()
+                    FirestoreClass().saveNewUser(this, FirebaseAuth.getInstance().currentUser!!.uid, name, email)
                 } else {
-                    showErrorSnackbar("Du konntest nicht registriert werden.")
+                    hideProgressDialog()
+                    showErrorSnackbar("Diese Email Adresse wird bereits verwendet, oder dein Passwort ist nicht sicher genug.")
                 }
             }
+    }
+
+    fun succesfullySignedUp(name:String) {
+        hideProgressDialog()
+        Toast.makeText(
+            this,
+            "Willkommen $name, du bist nun Registriert",
+            Toast.LENGTH_LONG
+        ).show()
+        startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+        auth.signOut()
+        finish()
     }
 
     private fun validateForm(name:String, email:String, password:String):Boolean {
