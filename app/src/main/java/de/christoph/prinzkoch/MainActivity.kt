@@ -51,7 +51,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.log_in -> {}
+            R.id.log_in -> {
+                startActivity(Intent(this, LogInActivity::class.java))
+            }
             R.id.register -> {
                 startActivity(Intent(this, RegisterActivity::class.java))
             }

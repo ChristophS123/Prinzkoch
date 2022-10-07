@@ -1,12 +1,9 @@
 package de.christoph.prinzkoch
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.text.TextUtils
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -37,8 +34,8 @@ class RegisterActivity : BaseActivity() {
         val name:String = et_register_name.text.toString().trim{it <= ' '}
         val email:String = et_register_email.text.toString().trim{it <= ' '}
         val password:String
-        if(et_password.text.toString() == et_password_submit.text.toString()) {
-            password = et_password.text.toString().trim{it <= ' '}
+        if(et_register_password.text.toString() == et_register_password_submit.text.toString()) {
+            password = et_register_password.text.toString().trim{it <= ' '}
         } else {
             showErrorSnackbar("Die Passwort - Bestätigung war nicht korrekt")
             return

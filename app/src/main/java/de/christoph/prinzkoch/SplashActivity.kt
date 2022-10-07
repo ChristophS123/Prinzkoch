@@ -40,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
         }, 2500)
     }
 
-    fun hideStatusBar() {
+    private fun hideStatusBar() {
         if(Build.VERSION.SDK_INT < 30) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         } else {
