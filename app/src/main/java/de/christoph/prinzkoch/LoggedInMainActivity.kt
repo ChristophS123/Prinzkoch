@@ -1,31 +1,48 @@
 package de.christoph.prinzkoch
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import de.christoph.prinzkoch.firebase.FirestoreClass
 import kotlinx.android.synthetic.main.activity_logged_in_main.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.app_bar_logged_in.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_logged_in.*
 
-class LoggedInMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logged_in_main)
         setUpActionBar()
         nav_view_logged_in.setNavigationItemSelectedListener(this)
+        FirestoreClass().getUserNameAndImageByID(this, FirebaseAuth.getInstance().currentUser!!.uid)
+    }
+
+    fun fillInformationsToNavMenu(name:String, image:String) {
+        tv_nav_header_logged_in_name.text = name
+        Glide
+            .with(this)
+            .load(image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_user_place_holder)
+            .into(nav_header_logged_in_profile_image)
     }
 
     private fun setUpActionBar() {
         setSupportActionBar(toolbar_logged_in_activity)
         toolbar_logged_in_activity.setNavigationIcon(R.drawable.ic_action_navigation_menu)
-        toolbar_logged_in_activity.title = resources.getString(R.string.register)
         toolbar_logged_in_activity.setNavigationOnClickListener {
             onNavigationClick()
         }
@@ -54,8 +71,25 @@ class LoggedInMainActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 Firebase.auth.signOut()
                 startActivity(Intent(this@LoggedInMainActivity, MainActivity::class.java))
             }
+            R.id.my_profile -> {
+                startActivityForResult(Intent(this, MyProfileActivity::class.java), MY_PROFILE_CODE)
+            }
+            R.id.new_recipe -> {
+                startActivity(Intent(this, CreateNewRecipe::class.java))
+            }
         }
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_CODE) {
+            FirestoreClass().getUserNameAndImageByID(this, FirebaseAuth.getInstance().currentUser!!.uid)
+        }
+    }
+
+    companion object {
+        const val MY_PROFILE_CODE = 10
     }
 
 }

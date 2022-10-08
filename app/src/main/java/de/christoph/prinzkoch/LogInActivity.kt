@@ -46,7 +46,12 @@ class LogInActivity : BaseActivity() {
 
     private fun setUpActionBar() {
         setSupportActionBar(toolbar_login_activity)
-        toolbar_login_activity.setNavigationIcon(R.drawable.ic_back_pressed)
+        val actionBar = supportActionBar
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_pressed)
+            actionBar.title = resources.getString(R.string.log_in)
+        }
         toolbar_login_activity.setNavigationOnClickListener {
             onBackPressed()
         }

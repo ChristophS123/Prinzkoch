@@ -13,4 +13,14 @@
     <string name="password_submit">Passwort bestätigen</string>
     <string name="please_wait">Bitte warten</string>
     <string name="log_in_tutorial">Gib deine Email Adresse und dein Passwort an, um dich anzumelden.</string>
+    <string name="save">Speichern</string>
+    <string name="new_recipe_tutorial">Bitte erstelle nur Rezepte, die du, oder jemand, den du kennst, schon ausprobiert hast.</string>
+    <string name="create">Erstellen</string>
+    <string name="name_of_recipe">Name des Rezepts</string>
+    <string name="short_description">Kurze Beschreibung</string>
+    <string name="breakfast">Frühstück</string>
+    <string name="lunch">Mittagessen</string>
+    <string name="diner">Abendessen</string>
+    <string name="snacks">Snacks</string>
+    <string name="long_description">Anleitung</string>
 </resources>

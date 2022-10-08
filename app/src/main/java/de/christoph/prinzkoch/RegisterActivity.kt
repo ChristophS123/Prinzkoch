@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import de.christoph.prinzkoch.firebase.FirestoreClass
+import kotlinx.android.synthetic.main.activity_log_in.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -24,7 +25,12 @@ class RegisterActivity : BaseActivity() {
 
     private fun setUpActionBar() {
         setSupportActionBar(toolbar_register_activity)
-        toolbar_register_activity.setNavigationIcon(R.drawable.ic_back_pressed)
+        val actionBar = supportActionBar
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back_pressed)
+            actionBar.title = resources.getString(R.string.log_in)
+        }
         toolbar_register_activity.setNavigationOnClickListener {
             onBackPressed()
         }

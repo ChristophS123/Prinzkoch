@@ -17,4 +17,7 @@
     <dimen name="progress_text_marginStart">8dp</dimen>
     <dimen name="progress_text_size">16sp</dimen>
     <dimen name="nav_header_logged_in_margin_button">8dp</dimen>
+    <dimen name="new_recipe_radio_group_margin_top">32dp</dimen>
+    <dimen name="new_recipe_image_size">200dp</dimen>
+    <dimen name="new_recipe_image_margin_left">20dp</dimen>
 </resources>
