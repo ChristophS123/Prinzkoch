@@ -23,4 +23,5 @@
     <string name="diner">Abendessen</string>
     <string name="snacks">Snacks</string>
     <string name="long_description">Anleitung</string>
+    <string name="create_new_recipe">Neues Rezept erstellen</string>
 </resources>

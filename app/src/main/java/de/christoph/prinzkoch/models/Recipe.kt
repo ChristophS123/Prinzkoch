@@ -4,12 +4,13 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Recipe (
-    val name:String = "",
+    val nameOfRecipe:String = "",
     val shortDescription:String = "",
     val category:String = "",
     val longDescription:String = "",
     val image:String = "",
-    val creatorID:String
+    val creatorID:String = "",
+    var comments:ArrayList<String> = ArrayList()
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -17,12 +18,13 @@ data class Recipe (
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.createStringArrayList()!!
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
+        parcel.writeString(nameOfRecipe)
         parcel.writeString(shortDescription)
         parcel.writeString(category)
         parcel.writeString(longDescription)

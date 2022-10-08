@@ -3,10 +3,12 @@ package de.christoph.prinzkoch.firebase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import de.christoph.prinzkoch.CreateNewRecipe
 import de.christoph.prinzkoch.LoggedInMainActivity
 import de.christoph.prinzkoch.MyProfileActivity
 import de.christoph.prinzkoch.RegisterActivity
 import de.christoph.prinzkoch.constants.Constants
+import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.models.User
 
 class FirestoreClass {
@@ -61,6 +63,19 @@ class FirestoreClass {
             .addOnFailureListener {
                 activity.hideProgressDialog()
                 activity.showErrorSnackbar("Deine Daten konnten nicht gespeichert werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun saveNewRecipe(activity: CreateNewRecipe, recipe:Recipe) {
+        mFirestore.collection(Constants.RECIPES)
+            .document()
+            .set(recipe)
+            .addOnSuccessListener {
+                activity.recipeCreatedSuccesfully()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Dein Rezept konnte nicht erstellt werden. Überprüfe deine Internet Verbindung.")
             }
     }
 

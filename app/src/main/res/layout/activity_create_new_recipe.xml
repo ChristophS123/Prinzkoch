@@ -119,7 +119,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:text="@string/create"
-                android:id="@+id/cmd_log_in_submit"
+                android:id="@+id/cmd_new_recipe_submit"
                 android:layout_marginTop="@dimen/cmd_register_submit_margin_top"
                 android:layout_height="wrap_content">
             </com.google.android.material.button.MaterialButton>
