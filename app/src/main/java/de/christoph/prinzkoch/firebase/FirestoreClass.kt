@@ -1,12 +1,11 @@
 package de.christoph.prinzkoch.firebase
 
+import android.net.Uri
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import de.christoph.prinzkoch.CreateNewRecipe
-import de.christoph.prinzkoch.LoggedInMainActivity
-import de.christoph.prinzkoch.MyProfileActivity
-import de.christoph.prinzkoch.RegisterActivity
+import de.christoph.prinzkoch.*
 import de.christoph.prinzkoch.constants.Constants
 import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.models.User
@@ -92,6 +91,63 @@ class FirestoreClass {
             }
             .addOnFailureListener {
                 activity.showErrorSnackbar("Deine Daten konnten nicht geladen werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun getUserNameAndImageToCreateRecipe(
+        activity: CreateNewRecipe,
+        nameOfRecipe: String,
+        shortDescription: String,
+        category: String,
+        longDescription: String,
+        image: Uri?
+    ) {
+        mFirestore.collection(Constants.USERS)
+            .document(FirebaseAuth.getInstance().currentUser!!.uid)
+            .get()
+            .addOnSuccessListener { recipe ->
+                val model:User = recipe.toObject(User::class.java)!!
+                activity.createNewRecipeWithNameAndImageFromUser(nameOfRecipe, shortDescription, category, longDescription, image, model.name, model.image)
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Das Rezept konnte nicht erstellt werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun loadAllRecipes(activity: LoggedInMainActivity) {
+        mFirestore.collection(Constants.RECIPES)
+            .get()
+            .addOnSuccessListener { document ->
+                var loadedRecipes:ArrayList<Recipe> = ArrayList()
+                for(recipe in document.documents) {
+                    var rec = (recipe.toObject(Recipe::class.java)!!)
+                    rec.id = recipe.id
+                    loadedRecipes.add(rec)
+                }
+                activity.loadedAllRecipes(loadedRecipes)
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Es konnten keine Rezepte geladen werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun loadAllRecipesToMainActivity(activity: MainActivity) {
+        mFirestore.collection(Constants.RECIPES)
+            .get()
+            .addOnSuccessListener { document ->
+                var loadedRecipes:ArrayList<Recipe> = ArrayList()
+                for(recipe in document.documents) {
+                    var rec = (recipe.toObject(Recipe::class.java)!!)
+                    rec.id = recipe.id
+                    loadedRecipes.add(rec)
+                }
+                activity.loadedAllRecipes(loadedRecipes)
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Es konnten keine Rezepte geladen werden. Überprüfe deine Internet Verbindung.")
             }
     }
 

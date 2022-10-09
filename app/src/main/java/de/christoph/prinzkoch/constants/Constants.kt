@@ -11,4 +11,6 @@ object Constants {
     const val DINER:String = "diner"
     const val SNACKS:String = "snacks"
 
+    const val RECIPE_MODEL:String = "recipe_model"
+
 }

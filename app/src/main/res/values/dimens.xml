@@ -20,4 +20,16 @@
     <dimen name="new_recipe_radio_group_margin_top">32dp</dimen>
     <dimen name="new_recipe_image_size">200dp</dimen>
     <dimen name="new_recipe_image_margin_left">20dp</dimen>
+    <dimen name="main_recyclerview_padding">16dp</dimen>
+    <dimen name="recipe_item_image_height">200dp</dimen>
+    <dimen name="iv_item_recipe_margin">16dp</dimen>
+    <dimen name="item_recipe_name_of_recipe_text_size">32sp</dimen>
+    <dimen name="item_recipe_name_of_recipe_margin_top">16dp</dimen>
+    <dimen name="item_recipe_short_description_text_size">20sp</dimen>
+    <dimen name="item_recipe_user_image_size">50sp</dimen>
+    <dimen name="item_recipe_user_name_text_size">16sp</dimen>
+    <dimen name="item_recipe_user_name_margin_top">12dp</dimen>
+    <dimen name="item_recipe_name_of_recipe_margin_start">8dp</dimen>
+    <dimen name="item_recipe_user_data_margin_top">32dp</dimen>
+    <dimen name="item_recipe_category_text_size">16sp</dimen>
 </resources>

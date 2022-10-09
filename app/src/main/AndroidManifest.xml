@@ -18,10 +18,13 @@
         android:theme="@style/Theme.Prinzkoch"
         tools:targetApi="31">
         <activity
-            android:name=".CreateNewRecipe"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Prinzkoch"
+            android:name=".RecipeDetails"
             android:exported="false" />
+        <activity
+            android:name=".CreateNewRecipe"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Prinzkoch" />
         <activity
             android:name=".MyProfileActivity"
             android:exported="false"

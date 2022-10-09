@@ -10,7 +10,9 @@ data class Recipe (
     val longDescription:String = "",
     val image:String = "",
     val creatorID:String = "",
-    var comments:ArrayList<String> = ArrayList()
+    val creatorName:String = "",
+    val creatorImage:String = "",
+    var id:String = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -19,7 +21,9 @@ data class Recipe (
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.createStringArrayList()!!
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!
     ) {
     }
 
@@ -30,6 +34,9 @@ data class Recipe (
         parcel.writeString(longDescription)
         parcel.writeString(image)
         parcel.writeString(creatorID)
+        parcel.writeString(creatorName)
+        parcel.writeString(creatorImage)
+        parcel.writeString(id)
     }
 
     override fun describeContents(): Int {

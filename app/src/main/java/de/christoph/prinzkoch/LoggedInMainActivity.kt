@@ -6,21 +6,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import de.christoph.prinzkoch.constants.Constants
 import de.christoph.prinzkoch.firebase.FirestoreClass
+import de.christoph.prinzkoch.models.Recipe
+import de.christoph.prinzkoch.recyclerview.MainRecyclerviewAdapter
 import kotlinx.android.synthetic.main.activity_logged_in_main.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.app_bar_logged_in.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_logged_in.*
 import kotlinx.android.synthetic.main.nav_header_logged_in.*
 
 class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private var allRecipes:ArrayList<Recipe> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +36,31 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
         setUpActionBar()
         nav_view_logged_in.setNavigationItemSelectedListener(this)
         FirestoreClass().getUserNameAndImageByID(this, FirebaseAuth.getInstance().currentUser!!.uid)
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().loadAllRecipes(this)
+    }
+
+    fun loadedAllRecipes(allRecipesLoaded:ArrayList<Recipe>) {
+        hideProgressDialog()
+        allRecipes = allRecipesLoaded
+        setUpRecyclerview()
+    }
+
+    private fun setUpRecyclerview() {
+        if(allRecipes.size > 0) {
+            rv_main_logged_in.visibility = View.VISIBLE
+            rv_main_logged_in.layoutManager = LinearLayoutManager(this)
+            rv_main_logged_in.setHasFixedSize(true)
+            val adapter:MainRecyclerviewAdapter = MainRecyclerviewAdapter(this, allRecipes)
+            rv_main_logged_in.adapter = adapter
+            adapter.setOnClickListener(object:MainRecyclerviewAdapter.OnClickListener {
+                override fun onClick(position: Int, model: Recipe) {
+                    var intent:Intent = Intent(this@LoggedInMainActivity, RecipeDetails::class.java)
+                    intent.putExtra(Constants.RECIPE_MODEL, model)
+                    startActivity(intent)
+                }
+            })
+        }
     }
 
     fun fillInformationsToNavMenu(name:String, image:String) {
@@ -75,7 +108,7 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
                 startActivityForResult(Intent(this, MyProfileActivity::class.java), MY_PROFILE_CODE)
             }
             R.id.new_recipe -> {
-                startActivity(Intent(this, CreateNewRecipe::class.java))
+                startActivityForResult(Intent(this, CreateNewRecipe::class.java), CREATE_NEW_RECIPE)
             }
         }
         return true
@@ -85,11 +118,15 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_CODE) {
             FirestoreClass().getUserNameAndImageByID(this, FirebaseAuth.getInstance().currentUser!!.uid)
+        } else if(resultCode == Activity.RESULT_OK && requestCode == CREATE_NEW_RECIPE) {
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirestoreClass().loadAllRecipes(this)
         }
     }
 
     companion object {
         const val MY_PROFILE_CODE = 10
+        const val CREATE_NEW_RECIPE = 11
     }
 
 }

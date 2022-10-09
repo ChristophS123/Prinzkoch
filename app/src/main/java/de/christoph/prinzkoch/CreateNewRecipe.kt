@@ -39,14 +39,20 @@ class CreateNewRecipe : BaseActivity() {
         val shortDescription:String = et_new_recipe_short_description.text.toString()
         val category:String? = getRecipeCategory()
         val longDescription:String = et_new_recipe_long_description.text.toString()
-        if(validateForm(nameOfRecipe, shortDescription, category!!, longDescription)) {
-            uploadRecipeImageToStorage(nameOfRecipe, shortDescription, category, longDescription)
-        } else
+        if(validateForm(nameOfRecipe, shortDescription, category, longDescription)) {
+            uploadRecipeImageToStorage(nameOfRecipe, shortDescription, category!!, longDescription)
+        } else {
+            hideProgressDialog()
             showErrorSnackbar("Bitte fülle alle Felder aus")
+        }
     }
 
-    fun createNewRecipe(nameOfRecipe: String, shortDescription: String, category: String, longDescription: String, image: Uri?) {
-        val recipe:Recipe = Recipe(nameOfRecipe, shortDescription, category, longDescription, image.toString(), FirebaseAuth.getInstance().currentUser!!.uid)
+    private fun createNewRecipe(nameOfRecipe: String, shortDescription: String, category: String, longDescription: String, image: Uri?) {
+        FirestoreClass().getUserNameAndImageToCreateRecipe(this, nameOfRecipe, shortDescription, category, longDescription, image)
+    }
+
+    fun createNewRecipeWithNameAndImageFromUser(nameOfRecipe: String, shortDescription: String, category: String, longDescription: String, image: Uri?, userName:String, userImage:String) {
+        val recipe:Recipe = Recipe(nameOfRecipe, shortDescription, category, longDescription, image.toString(), FirebaseAuth.getInstance().currentUser!!.uid, userName, userImage)
         FirestoreClass().saveNewRecipe(this, recipe)
     }
 
@@ -87,8 +93,8 @@ class CreateNewRecipe : BaseActivity() {
             null
     }
 
-    private fun validateForm(nameOfRecipe:String, shortDescription:String, category:String, longDescription:String): Boolean {
-        return nameOfRecipe.isNotEmpty() && shortDescription.isNotEmpty() && category != null && category.isNotEmpty() && longDescription.isNotEmpty()
+    private fun validateForm(nameOfRecipe:String, shortDescription:String, category:String?, longDescription:String): Boolean {
+        return nameOfRecipe.isNotEmpty() && shortDescription.isNotEmpty() && category != null && longDescription.isNotEmpty()
     }
 
     private fun onCreateNewRecipeImageViewClicked() {

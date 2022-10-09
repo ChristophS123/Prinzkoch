@@ -30,101 +30,107 @@
         app:cardCornerRadius="@dimen/cardview_corner_radius"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp"
             android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/et_password_margin_top"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/et_new_recipe_name_of_recipe"
-                    android:hint="@string/name_of_recipe"
-                    android:layout_height="wrap_content">
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/et_password_margin_top"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/et_new_recipe_short_description"
-                    android:hint="@string/short_description"
-                    android:layout_height="wrap_content">
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/new_recipe_radio_group_margin_top"
-                android:layout_height="wrap_content">
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/et_password_margin_top"
                     android:layout_height="wrap_content">
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:text="@string/breakfast"
-                        android:id="@+id/rb_breakfast"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/et_new_recipe_name_of_recipe"
+                        android:hint="@string/name_of_recipe"
                         android:layout_height="wrap_content">
-                    </RadioButton>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:text="@string/lunch"
-                        android:id="@+id/rb_lunch"
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/et_password_margin_top"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/et_new_recipe_short_description"
+                        android:hint="@string/short_description"
                         android:layout_height="wrap_content">
-                    </RadioButton>
-                    <RadioButton
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/new_recipe_radio_group_margin_top"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
                         android:layout_width="wrap_content"
-                        android:text="@string/diner"
-                        android:id="@+id/rb_diner"
+                        android:orientation="vertical"
                         android:layout_height="wrap_content">
-                    </RadioButton>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:text="@string/snacks"
-                        android:id="@+id/rb_snacks"
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="@string/breakfast"
+                            android:id="@+id/rb_breakfast"
+                            android:layout_height="wrap_content">
+                        </RadioButton>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="@string/lunch"
+                            android:id="@+id/rb_lunch"
+                            android:layout_height="wrap_content">
+                        </RadioButton>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="@string/diner"
+                            android:id="@+id/rb_diner"
+                            android:layout_height="wrap_content">
+                        </RadioButton>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="@string/snacks"
+                            android:id="@+id/rb_snacks"
+                            android:layout_height="wrap_content">
+                        </RadioButton>
+                    </RadioGroup>
+                    <ImageView
+                        android:layout_width="@dimen/new_recipe_image_size"
+                        android:src="@drawable/ic_recipe_place_holder"
+                        android:id="@+id/iv_create_new_recipe"
+                        android:layout_marginLeft="@dimen/new_recipe_image_margin_left"
+                        android:layout_height="@dimen/new_recipe_image_size">
+                    </ImageView>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/et_password_margin_top"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/et_new_recipe_long_description"
+                        android:hint="@string/long_description"
                         android:layout_height="wrap_content">
-                    </RadioButton>
-                </RadioGroup>
-                <ImageView
-                    android:layout_width="@dimen/new_recipe_image_size"
-                    android:src="@drawable/ic_recipe_place_holder"
-                    android:id="@+id/iv_create_new_recipe"
-                    android:layout_marginLeft="@dimen/new_recipe_image_margin_left"
-                    android:layout_height="@dimen/new_recipe_image_size">
-                </ImageView>
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:text="@string/create"
+                    android:id="@+id/cmd_new_recipe_submit"
+                    android:layout_marginTop="@dimen/cmd_register_submit_margin_top"
+                    android:layout_height="wrap_content">
+                </com.google.android.material.button.MaterialButton>
+
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/et_password_margin_top"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/et_new_recipe_long_description"
-                    android:hint="@string/long_description"
-                    android:layout_height="wrap_content">
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:text="@string/create"
-                android:id="@+id/cmd_new_recipe_submit"
-                android:layout_marginTop="@dimen/cmd_register_submit_margin_top"
-                android:layout_height="wrap_content">
-            </com.google.android.material.button.MaterialButton>
-
-        </LinearLayout>
+        </ScrollView>
 
     </androidx.cardview.widget.CardView>
 
