@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CommentActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:theme="@style/Theme.Prinzkoch.AppBarOverlay"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        app:titleTextColor="@color/white"
+        android:id="@+id/toolbar_comment_activity"
+        app:popupTheme="@style/Theme.Prinzkoch.PopUpOverlay"
+        android:layout_height="?attr/actionBarSize">
+    </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:padding="@dimen/main_recyclerview_padding"
+            android:id="@+id/rv_comment_activity"
+            android:layout_weight="10"
+            android:layout_height="0dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:id="@+id/et_comment_activity"
+                android:hint="@string/new_comment"
+                android:layout_height="wrap_content">
+            </androidx.appcompat.widget.AppCompatEditText>
+
+            <Button
+                android:layout_width="0dp"
+                android:text=">"
+                android:id="@+id/cmd_add_comment"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_height="wrap_content">
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

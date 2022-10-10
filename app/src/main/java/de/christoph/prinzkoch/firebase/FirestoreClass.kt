@@ -151,4 +151,30 @@ class FirestoreClass {
             }
     }
 
+    fun newUserLikedRecipe(activity: RecipeDetails, likers: java.util.ArrayList<String>, documentID: String) {
+        mFirestore.collection(Constants.RECIPES)
+            .document(documentID)
+            .update(Constants.LIKERS, likers)
+            .addOnSuccessListener {
+                activity.likedSuccesfully()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Das Rezept konnte nicht geliked werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun userRemovedLike(activity: RecipeDetails, likers: java.util.ArrayList<String>, documentID: String) {
+        mFirestore.collection(Constants.RECIPES)
+            .document(documentID)
+            .update(Constants.LIKERS, likers)
+            .addOnSuccessListener {
+                activity.unLikedSuccesfully()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Dein Like konnte nicht weggenommen werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
 }

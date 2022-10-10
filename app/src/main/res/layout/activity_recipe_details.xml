@@ -7,123 +7,173 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:theme="@style/Theme.Prinzkoch.AppBarOverlay"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
+        <LinearLayout
             android:layout_width="match_parent"
-            app:titleTextColor="@color/white"
-            android:id="@+id/toolbar_recipe_details"
-            app:popupTheme="@style/Theme.Prinzkoch.PopUpOverlay"
-            android:layout_height="?attr/actionBarSize">
-        </androidx.appcompat.widget.Toolbar>
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:elevation="@dimen/cardview_elevation"
-        android:layout_margin="@dimen/cardview_margin"
-        app:cardCornerRadius="@dimen/cardview_corner_radius"
-        android:layout_height="match_parent">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
-
-                <ImageView
+                <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/iv_item_recipe_margin"
-                    android:id="@+id/iv_recipe_details"
-                    android:src="@drawable/ic_recipe_place_holder"
-                    android:layout_height="@dimen/recipe_item_image_height">
-                </ImageView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    tools:text="Title from recipe"
-                    android:textStyle="bold"
-                    android:id="@+id/tv_recipe_details_name_of_recipe"
-                    android:layout_marginTop="@dimen/item_recipe_name_of_recipe_margin_top"
-                    android:textSize="@dimen/item_recipe_name_of_recipe_text_size"
+                    android:theme="@style/Theme.Prinzkoch.AppBarOverlay"
                     android:layout_height="wrap_content">
-                </TextView>
 
-                <TextView
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        app:titleTextColor="@color/white"
+                        android:id="@+id/toolbar_recipe_details"
+                        app:popupTheme="@style/Theme.Prinzkoch.PopUpOverlay"
+                        android:layout_height="?attr/actionBarSize">
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:textSize="@dimen/item_recipe_short_description_text_size"
-                    android:layout_marginTop="@dimen/item_recipe_name_of_recipe_margin_top"
-                    tools:text="Dies ist die sehr kurze Beschreibung, des unfassbar leckeren Rezeptes :D"
-                    android:textStyle="italic"
-                    android:id="@+id/tv_recipe_details_short_description"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:elevation="@dimen/cardview_elevation"
+                    android:layout_margin="@dimen/cardview_margin"
+                    app:cardCornerRadius="@dimen/cardview_corner_radius"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/item_recipe_name_of_recipe_margin_top"
-                    tools:text="Frühstück"
-                    android:id="@+id/tv_recipe_details_category"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/item_recipe_category_text_size"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Anleitung:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="32dp"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content">
-                </TextView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:padding="8dp"
+                            android:orientation="vertical"
+                            android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:textSize="@dimen/item_recipe_short_description_text_size"
-                    tools:text="Dies ist die sehr lange Beschreibung, des unfassbar leckeren Rezeptes :D"
-                    android:textStyle="italic"
-                    android:id="@+id/tv_recipe_details_long_description"
-                    android:layout_height="wrap_content">
-                </TextView>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/iv_item_recipe_margin"
+                                android:id="@+id/iv_recipe_details"
+                                android:src="@drawable/ic_recipe_place_holder"
+                                android:layout_height="@dimen/recipe_item_image_height">
+                            </ImageView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/item_recipe_user_data_margin_top"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/recipe_details_like_margin_top"
+                                android:layout_height="wrap_content">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="@dimen/item_recipe_user_image_size"
-                        android:id="@+id/iv_recipe_details_user_image"
-                        android:src="@drawable/ic_user_place_holder"
-                        android:layout_height="@dimen/item_recipe_user_image_size">
-                    </de.hdodenhof.circleimageview.CircleImageView>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:id="@+id/iv_recipe_details_heart_unliked"
+                                    android:src="@drawable/heard_unliked"
+                                    android:visibility="gone"
+                                    android:layout_height="wrap_content">
+                                </ImageView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        tools:text="Christoph"
-                        android:id="@+id/tv_recipe_details_user_name"
-                        android:textSize="@dimen/item_recipe_user_name_text_size"
-                        android:layout_marginStart="@dimen/item_recipe_name_of_recipe_margin_start"
-                        android:layout_marginTop="@dimen/item_recipe_user_name_margin_top"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:id="@+id/iv_recipe_details_heart_liked"
+                                    android:src="@drawable/heart_liked"
+                                    android:visibility="visible"
+                                    android:layout_height="wrap_content">
+                                </ImageView>
 
-                </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    tools:text="40"
+                                    android:textSize="@dimen/recipe_details_like_text_size"
+                                    android:id="@+id/tv_recipe_details_likes"
+                                    android:layout_marginStart="@dimen/recipe_details_like_margin_start"
+                                    android:layout_marginTop="@dimen/recipe_details_like_text_margin_top"
+                                    android:layout_height="wrap_content">
+                                </TextView>
 
-            </LinearLayout>
+                                <ImageButton
+                                    android:layout_width="50dp"
+                                    android:layout_gravity="end"
+                                    android:background="@color/white"
+                                    android:id="@+id/cmd_recipe_details_comments"
+                                    android:layout_marginStart="128dp"
+                                    android:src="@drawable/ic_comments"
+                                    android:layout_height="50dp">
+                                </ImageButton>
 
-        </ScrollView>
+                            </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                tools:text="Title from recipe"
+                                android:textStyle="bold"
+                                android:id="@+id/tv_recipe_details_name_of_recipe"
+                                android:layout_marginTop="@dimen/item_recipe_name_of_recipe_margin_top"
+                                android:textSize="@dimen/item_recipe_name_of_recipe_text_size"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textSize="@dimen/item_recipe_short_description_text_size"
+                                android:layout_marginTop="@dimen/item_recipe_name_of_recipe_margin_top"
+                                tools:text="Dies ist die sehr kurze Beschreibung, des unfassbar leckeren Rezeptes :D"
+                                android:textStyle="italic"
+                                android:id="@+id/tv_recipe_details_short_description"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_marginTop="@dimen/item_recipe_name_of_recipe_margin_top"
+                                tools:text="Frühstück"
+                                android:id="@+id/tv_recipe_details_category"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/item_recipe_category_text_size"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="Anleitung:"
+                                android:textStyle="bold"
+                                android:layout_marginTop="32dp"
+                                android:textSize="16sp"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textSize="@dimen/item_recipe_short_description_text_size"
+                                tools:text="Dies ist die sehr lange Beschreibung, des unfassbar leckeren Rezeptes :D"
+                                android:textStyle="italic"
+                                android:id="@+id/tv_recipe_details_long_description"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="@dimen/item_recipe_user_data_margin_top"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="@dimen/item_recipe_user_image_size"
+                                    android:id="@+id/iv_recipe_details_user_image"
+                                    android:src="@drawable/ic_user_place_holder"
+                                    android:layout_height="@dimen/item_recipe_user_image_size">
+                                </de.hdodenhof.circleimageview.CircleImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    tools:text="Christoph"
+                                    android:id="@+id/tv_recipe_details_user_name"
+                                    android:textSize="@dimen/item_recipe_user_name_text_size"
+                                    android:layout_marginStart="@dimen/item_recipe_name_of_recipe_margin_start"
+                                    android:layout_marginTop="@dimen/item_recipe_user_name_margin_top"
+                                    android:layout_height="wrap_content">
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
 </LinearLayout>

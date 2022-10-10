@@ -57,7 +57,7 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
                 override fun onClick(position: Int, model: Recipe) {
                     var intent:Intent = Intent(this@LoggedInMainActivity, RecipeDetails::class.java)
                     intent.putExtra(Constants.RECIPE_MODEL, model)
-                    startActivity(intent)
+                    startActivityForResult(intent, SAW_RECIPE_DETAILS)
                 }
             })
         }
@@ -121,12 +121,16 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
         } else if(resultCode == Activity.RESULT_OK && requestCode == CREATE_NEW_RECIPE) {
             showProgressDialog(resources.getString(R.string.please_wait))
             FirestoreClass().loadAllRecipes(this)
+        } else if(requestCode == SAW_RECIPE_DETAILS) {
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirestoreClass().loadAllRecipes(this)
         }
     }
 
     companion object {
         const val MY_PROFILE_CODE = 10
         const val CREATE_NEW_RECIPE = 11
+        const val SAW_RECIPE_DETAILS = 12
     }
 
 }

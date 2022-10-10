@@ -32,4 +32,8 @@
     <dimen name="item_recipe_name_of_recipe_margin_start">8dp</dimen>
     <dimen name="item_recipe_user_data_margin_top">32dp</dimen>
     <dimen name="item_recipe_category_text_size">16sp</dimen>
+    <dimen name="recipe_details_like_margin_top">16dp</dimen>
+    <dimen name="recipe_details_like_text_size">20dp</dimen>
+    <dimen name="recipe_details_like_margin_start">8dp</dimen>
+    <dimen name="recipe_details_like_text_margin_top">5dp</dimen>
 </resources>
