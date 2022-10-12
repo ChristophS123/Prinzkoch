@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
@@ -14,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import de.christoph.prinzkoch.constants.Constants
+import de.christoph.prinzkoch.dialogs.SearchDialog
 import de.christoph.prinzkoch.firebase.FirestoreClass
 import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.recyclerview.MainRecyclerviewAdapter
@@ -22,7 +25,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_logged_in.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, SearchDialog.SearchDialogListener {
 
     private var allRecipes:ArrayList<Recipe> = ArrayList()
 
@@ -42,6 +45,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         toolbar_main_activity.setNavigationOnClickListener {
             onNavigationClick()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater:MenuInflater = menuInflater
+        inflater.inflate(R.menu.search_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_search) {
+            openSearchDialog()
+        }
+        return true
+    }
+
+    private fun openSearchDialog() {
+        val searchDialog:SearchDialog = SearchDialog()
+        searchDialog.show(supportFragmentManager, "search dialog")
     }
 
     private fun onNavigationClick() {
@@ -75,6 +96,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     fun loadedAllRecipes(loadedRecipes: ArrayList<Recipe>) {
+        Log.d("dsafadsf", loadedRecipes.toString())
         hideProgressDialog()
         allRecipes = loadedRecipes
         setUpRecyclerview()
@@ -95,6 +117,29 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             })
         }
+    }
+
+    override fun search(searchWord: String) {
+        Log.d("s", searchWord)
+        var newRecipeList:ArrayList<Recipe> = ArrayList()
+        for(i in allRecipes) {
+            if(i.nameOfRecipe.toLowerCase().contains(searchWord.toLowerCase()) || i.shortDescription.toLowerCase().contains(searchWord.toLowerCase()) || i.category.toLowerCase().contains(searchWord.toLowerCase()) || i.creatorName.toLowerCase().contains(searchWord.toLowerCase()))
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("mittag") && i.category == "lunch")
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("früh") || searchWord.toLowerCase().contains("frueh") && i.category == "breakfast")
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("snack") && i.category == "snacks")
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("abend") && i.category == "dinner")
+                newRecipeList.add(i)
+        }
+        loadedAllRecipes(newRecipeList)
+    }
+
+    override fun reset() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().loadAllRecipesToMainActivity(this)
     }
 
 

@@ -7,6 +7,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import de.christoph.prinzkoch.*
 import de.christoph.prinzkoch.constants.Constants
+import de.christoph.prinzkoch.models.Comment
 import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.models.User
 
@@ -174,6 +175,53 @@ class FirestoreClass {
             .addOnFailureListener {
                 activity.hideProgressDialog()
                 activity.showErrorSnackbar("Dein Like konnte nicht weggenommen werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun getUserNameAndImageByIDForComment(activity: CommentActivity, message: String) {
+        mFirestore.collection(Constants.USERS)
+            .document(FirebaseAuth.getInstance().currentUser!!.uid)
+            .get()
+            .addOnSuccessListener { data ->
+                val model:User = data.toObject(User::class.java)!!
+                activity.addComment(model.id, model.name, model.image, message)
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Dein Kommentar konnte nicht gesendet werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun saveComment(activity: CommentActivity, comment: Comment) {
+        mFirestore.collection(Constants.COMMENTS)
+            .document()
+            .set(comment)
+            .addOnSuccessListener {
+                activity.succesfullySavedComment()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Dein Kommentar konnte nicht gesendet werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun loadAllComments(activity: CommentActivity, documentID: String) {
+        mFirestore.collection(Constants.COMMENTS)
+            .whereEqualTo(Constants.RECIPE_COMMENT, documentID)
+            .get()
+            .addOnSuccessListener { data ->
+                if(data.documents.size != 0) {
+                    var comments:ArrayList<Comment> = ArrayList()
+                    for(i in data.documents) {
+                        comments.add(i.toObject(Comment::class.java)!!)
+                    }
+                    activity.loadedAllComments(comments)
+                } else
+                    activity.noCommentsExists()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Kommentare konnten nicht geladen werden. Überprüfe deine Internet Verbindung.")
             }
     }
 

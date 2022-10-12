@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:padding="@dimen/main_recyclerview_padding"
             android:id="@+id/rv_comment_activity"
-            android:layout_weight="10"
+            android:layout_weight="5"
             android:layout_height="0dp">
         </androidx.recyclerview.widget.RecyclerView>
 

@@ -18,13 +18,16 @@
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/content_logged_in.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/content_main.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/dialog_progress.xml" value="0.35597826086956524" />
+        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/item_comment.xml" value="0.33" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/item_recipe.xml" value="0.33" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/nav_header_logged_in.xml" value="0.33" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/nav_header_loggedin.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/nav_header_main.xml" value="0.33" />
+        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/layout/search_dialog.xml" value="0.365625" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/menu/activity_logged_in_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/menu/activity_main_drawer.xml" value="0.365625" />
         <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/menu/activity_main_drawer_logged_in.xml" value="0.365625" />
+        <entry key="..\:/Users/schmi/Desktop/Allgemein/Programmieren/Speicher/Apps/Prinzkoch/app/src/main/res/menu/search_menu.xml" value="0.365625" />
       </map>
     </option>
   </component>

@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.GravityCompat
@@ -15,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import de.christoph.prinzkoch.constants.Constants
+import de.christoph.prinzkoch.dialogs.SearchDialog
 import de.christoph.prinzkoch.firebase.FirestoreClass
 import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.recyclerview.MainRecyclerviewAdapter
@@ -26,7 +29,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_logged_in.*
 import kotlinx.android.synthetic.main.nav_header_logged_in.*
 
-class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, SearchDialog.SearchDialogListener {
 
     private var allRecipes:ArrayList<Recipe> = ArrayList()
 
@@ -127,10 +130,51 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_search) {
+            openSearchDialog()
+        }
+        return true
+    }
+
+    private fun openSearchDialog() {
+        val searchDialog: SearchDialog = SearchDialog()
+        searchDialog.show(supportFragmentManager, "search dialog")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.search_menu, menu)
+        return true
+    }
+
     companion object {
         const val MY_PROFILE_CODE = 10
         const val CREATE_NEW_RECIPE = 11
         const val SAW_RECIPE_DETAILS = 12
+    }
+
+    override fun search(searchWord: String) {
+        Log.d("s", searchWord)
+        var newRecipeList:ArrayList<Recipe> = ArrayList()
+        for(i in allRecipes) {
+            if(i.nameOfRecipe.toLowerCase().contains(searchWord.toLowerCase()) || i.shortDescription.toLowerCase().contains(searchWord.toLowerCase()) || i.category.toLowerCase().contains(searchWord.toLowerCase()) || i.creatorName.toLowerCase().contains(searchWord.toLowerCase()))
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("mittag") && i.category == "lunch")
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("früh") || searchWord.toLowerCase().contains("frueh") && i.category == "breakfast")
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("snack") && i.category == "snacks")
+                newRecipeList.add(i)
+            else if(searchWord.toLowerCase().contains("abend") && i.category == "dinner")
+                newRecipeList.add(i)
+        }
+        loadedAllRecipes(newRecipeList)
+    }
+
+    override fun reset() {
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().loadAllRecipes(this)
     }
 
 }
