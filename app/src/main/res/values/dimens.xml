@@ -38,4 +38,5 @@
     <dimen name="recipe_details_like_text_margin_top">5dp</dimen>
     <dimen name="item_comment_cardview_padding">32dp</dimen>
     <dimen name="item_comment_message_text_size">20sp</dimen>
+    <dimen name="item_my_recipe_delete_margin_top">16dp</dimen>
 </resources>

@@ -2,6 +2,7 @@ package de.christoph.prinzkoch.constants
 
 object Constants {
 
+    const val CREATORID: String = "creatorID"
     const val RECIPE_COMMENT: String = "recipeComment"
     const val COMMENTS: String = "comments"
     const val DOCUMENTID: String = "documentID"

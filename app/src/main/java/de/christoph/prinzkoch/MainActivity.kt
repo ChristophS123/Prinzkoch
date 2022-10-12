@@ -1,20 +1,15 @@
 package de.christoph.prinzkoch
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import de.christoph.prinzkoch.constants.Constants
 import de.christoph.prinzkoch.dialogs.SearchDialog
 import de.christoph.prinzkoch.firebase.FirestoreClass
@@ -22,7 +17,6 @@ import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.recyclerview.MainRecyclerviewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_logged_in.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, SearchDialog.SearchDialogListener {

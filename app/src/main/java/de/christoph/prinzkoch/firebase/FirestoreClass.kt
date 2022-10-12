@@ -1,6 +1,7 @@
 package de.christoph.prinzkoch.firebase
 
 import android.net.Uri
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -222,6 +223,35 @@ class FirestoreClass {
             .addOnFailureListener {
                 activity.hideProgressDialog()
                 activity.showErrorSnackbar("Kommentare konnten nicht geladen werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun loadRecipeFromUser(activity: MyRecipes, uid: String) {
+        mFirestore.collection(Constants.RECIPES)
+            .whereEqualTo(Constants.CREATORID, uid)
+            .get()
+            .addOnSuccessListener { documents ->
+                var recipes:ArrayList<Recipe> = ArrayList()
+                for(i in documents.documents) {
+                    recipes.add(i.toObject(Recipe::class.java)!!)
+                }
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Deine Rezepte konnten nicht geladen werden. Überprüfe deine Internet Verbindung.")
+            }
+    }
+
+    fun deleteRecipe(activity: MyRecipes, id: String) {
+        mFirestore.collection(Constants.RECIPES)
+            .document(id)
+            .delete()
+            .addOnSuccessListener { _ ->
+                activity.recipeSuccesfullyDeleted()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                activity.showErrorSnackbar("Das Rezept konnte nicht gelöscht werden. Überprüfe deine Internet Verbindung.")
             }
     }
 

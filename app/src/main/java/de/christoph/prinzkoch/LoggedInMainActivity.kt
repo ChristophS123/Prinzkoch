@@ -2,7 +2,6 @@ package de.christoph.prinzkoch
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -22,10 +21,7 @@ import de.christoph.prinzkoch.firebase.FirestoreClass
 import de.christoph.prinzkoch.models.Recipe
 import de.christoph.prinzkoch.recyclerview.MainRecyclerviewAdapter
 import kotlinx.android.synthetic.main.activity_logged_in_main.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.app_bar_logged_in.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_logged_in.*
 import kotlinx.android.synthetic.main.nav_header_logged_in.*
 
@@ -113,6 +109,11 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
             R.id.new_recipe -> {
                 startActivityForResult(Intent(this, CreateNewRecipe::class.java), CREATE_NEW_RECIPE)
             }
+            R.id.my_recipes -> {
+                val intent:Intent = Intent(this, MyRecipes::class.java)
+                intent.putExtra(Constants.RECIPES, allRecipes)
+                startActivityForResult(intent, DELETED_RECIPE)
+            }
         }
         return true
     }
@@ -125,6 +126,9 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
             showProgressDialog(resources.getString(R.string.please_wait))
             FirestoreClass().loadAllRecipes(this)
         } else if(requestCode == SAW_RECIPE_DETAILS) {
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirestoreClass().loadAllRecipes(this)
+        } else if(requestCode == DELETED_RECIPE) {
             showProgressDialog(resources.getString(R.string.please_wait))
             FirestoreClass().loadAllRecipes(this)
         }
@@ -152,6 +156,7 @@ class LoggedInMainActivity : BaseActivity(), NavigationView.OnNavigationItemSele
         const val MY_PROFILE_CODE = 10
         const val CREATE_NEW_RECIPE = 11
         const val SAW_RECIPE_DETAILS = 12
+        const val DELETED_RECIPE = 13
     }
 
     override fun search(searchWord: String) {
